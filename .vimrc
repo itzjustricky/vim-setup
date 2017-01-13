@@ -22,7 +22,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 " Syntastic for syntax checking
 Plugin 'scrooloose/syntastic'
-" vim-move for vim moving
+" Plugin for hotkeys to move whole lines
 Plugin 'matze/vim-move'
 " vim-airline for looks
 Plugin 'vim-airline/vim-airline'
@@ -40,13 +40,22 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " integrade ultisnips with youcompleteme
 Plugin 'ervandew/supertab'
-" auto-completion for quotes, parens, brackets, etc.
-"Plugin 'Raimondi/delimitMate'
-"Plugin 'Townk/vim-autoclose'
+
+" for closing tags in xml, html, etc. documents
+Plugin 'Valloric/MatchTagAlways'
+" Plugin 'alvan/vim-closetag'
+
+" Plugins for creating/managing surrounding brackets, quotes, etc.
 Plugin 'ervandew/matchem'
+Plugin 'vim-scripts/closetag.vim'
+
+" Plugin 'Raimondi/delimitMate'
+" Plugin 'Townk/vim-autoclose'
 "Plugin 'seletskiy/vim-autosurround'
+
 " For more information on search and replace
 Plugin 'henrik/vim-indexed-search'
+
 " script for not replacing register when pasting over something
 Plugin 'vim-scripts/ReplaceWithRegister'
 
@@ -54,11 +63,11 @@ Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'KeitaNakamura/neodark.vim'
 " Plugin 'flazz/vim-colorschemes'
 " Plugin 'zsoltf/vim-maui'
-"Plugin 'dracula/vim'
+" Plugin 'dracula/vim'
 
 " comment script from http://www.vim.org/scripts/script.php?script_id=1528
-Plugin 'comments.vim'
- 
+" Plugin 'comments.vim'
+Plugin 'tpope/vim-commentary'
 
 " !!!!!!!!!!!!!!!! EXAMPLES OF SUPPORTED FORMATS !!!!!!!!!!!!!!!!
 " Git plugin not hosted on GitHub
@@ -643,6 +652,16 @@ let g:syntastic_python_python_exec = '/usr/bin/python'
 " Set syntastic python checker to flake8
 "let g:syntastic_matlab_checkers = ['mlint']
 let g:loaded_syntastic_matlab_mlint_checker = 1
+
+" Plugin configurations for tag-based files (e.g. xml, html, etc.)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \}
+" let g:closetag_filenames = "*.xml,*.html,*.xhtml,*.phtml"
 
 " Hotkeys for all the plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
