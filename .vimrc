@@ -45,12 +45,11 @@ Plugin 'ervandew/supertab'
 Plugin 'Valloric/MatchTagAlways'
 
 " Plugins for creating/managing surrounding brackets, quotes, etc.
+" ervandew/matchem and alvan/vim-closetag conflict
 Plugin 'ervandew/matchem'
 Plugin 'vim-scripts/closetag.vim'
-
-" Plugin 'Raimondi/delimitMate'
-" Plugin 'Townk/vim-autoclose'
-"Plugin 'seletskiy/vim-autosurround'
+" Plugin 'alvan/vim-closetag'
+" Plugin 'tpope/vim-ragtag'
 
 " For more information on search and replace
 Plugin 'henrik/vim-indexed-search'
@@ -84,6 +83,13 @@ Plugin 'tpope/vim-commentary'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Load some scripts here
+source ~/.vim/scripts/closetag.vim
+
+" Load macros
+runtime macros/matchit.vim
+
 " To ignore plugin indent changes, instead use:
 "
 " Brief help
@@ -385,6 +391,11 @@ set viminfo^=%
 nmap gm :tabm +1<Bar>:echo<cr>
 nmap g<S-m> :tabm -1<Bar>:echo<cr>
 
+" For % jump to the next tag instead for tag-based documents
+autocmd FileType html let b:match_words = '<\(\w\w*\):</\1,{:}'
+autocmd FileType xhtml let b:match_words = '<\(\w\w*\):</\1,{:}'
+autocmd FileType xml let b:match_words = '<\(\w\w*\):</\1,{:}'
+
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
@@ -609,8 +620,8 @@ au VimEnter * NERDTreeToggle
 " Configurations for YouCompleteMe to work for compatible languages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-" let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-" let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+"let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+"let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
@@ -660,7 +671,7 @@ let g:mta_filetypes = {
     \ 'xml' : 1,
     \ 'jinja' : 1,
     \}
-" let g:closetag_filenames = "*.xml,*.html,*.xhtml,*.phtml"
+let g:closetag_html_style=1
 
 " Hotkeys for all the plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
