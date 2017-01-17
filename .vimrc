@@ -452,7 +452,7 @@ nmap <C-w><C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+map <leader>g :vimgrep // **/*<left><left><left><left><left><left><left>
 
 " Vimgreps in the current file
 map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
@@ -660,7 +660,7 @@ let g:syntastic_cpp_checkers = []
 let g:syntastic_python_python_exec = '/usr/bin/python'
 
 " Set syntastic python checker to flake8
-"let g:syntastic_matlab_checkers = ['mlint']
+" let g:syntastic_matlab_checkers = ['mlint']
 let g:loaded_syntastic_matlab_mlint_checker = 1
 
 " Plugin configurations for tag-based files (e.g. xml, html, etc.)
@@ -672,6 +672,11 @@ let g:mta_filetypes = {
     \ 'jinja' : 1,
     \}
 let g:closetag_html_style=1
+
+" Plugin configurations for vim-commentary
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType cpp setlocal commentstring=//\ %s
+autocmd FileType c setlocal commentstring=//\ %s
 
 " Hotkeys for all the plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
