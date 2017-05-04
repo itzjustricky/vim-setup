@@ -27,10 +27,10 @@ Plugin 'matze/vim-move'
 " vim-airline for looks
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-" conque-shell to create ipython split
-Plugin 'oplatek/Conque-Shell'
 " vim-surround for quick enclosing of selection
 Plugin 'tpope/vim-surround'
+" conque-shell to create ipython split
+Plugin 'oplatek/Conque-Shell'
 " ctrlp for navigating through files found by buffers/tags/etc.
 Plugin 'kien/ctrlp.vim'
 " ultisnips for even faster autocompletion; snippets engine
@@ -140,7 +140,7 @@ endw
 set timeout ttimeoutlen=100
 
 "set syntax
-set smartindent     
+set smartindent
 set tabstop=4       " The width of a TAB is set to 4.
 set shiftwidth=4    " Indents will have a width of 4.
 set expandtab       " Expand TABs to spaces.
@@ -197,7 +197,7 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -273,6 +273,11 @@ highlight Visual ctermbg=black ctermfg=lightmagenta
 highlight Normal ctermfg=white
 highlight Comment ctermfg=darkblue
 highlight String ctermfg=DarkRed
+
+augroup HighlightTODO
+    autocmd!
+    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
+augroup END
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -372,7 +377,7 @@ map <leader>tq :tabclose<cr>
 " Switch CWD to the directory of the open buffer
 "map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -436,11 +441,11 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-" Delete white space on save for Python, R and CoffeeScript
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.pyx :call DeleteTrailingWS()
-autocmd BufWrite *.r :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+" Delete white space on save for all files
+" autocmd BufWrite *.py :call DeleteTrailingWS()
+" autocmd BufWrite *.pyx :call DeleteTrailingWS()
+" autocmd BufWrite *.json :call DeleteTrailingWS()
+autocmd BufWrite *.* :call DeleteTrailingWS()
 
 " Some remappings to access tags in a newtab
 nmap <C-w><C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
@@ -463,14 +468,14 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
 " When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
+" <leader>cc
+
 " To go to the next search result do:
-"   <leader>n
-"
+" <leader>n
+
 " To go to the previous search results do:
-"   <leader>p
-"
+" <leader>p
+
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
@@ -511,7 +516,8 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 map <leader>pp :setlocal paste!<cr>
 
 " Set delete/yank to copy to clipboard
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
+set clipboard=unnamedplus,autoselect,exclude:cons\\\\|linux
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -642,7 +648,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " Disable autocommenting of form // for c++ files
 au FileType c,cpp setlocal comments-=:// comments+=f://
 
-" Syntastic 
+" Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -655,13 +661,18 @@ let g:syntastic_check_on_wq = 0
 
 " Set syntastic python checker to flake8
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args="--max-line-length=120 --ignore=E702,E701,E401"
+let g:syntastic_python_flake8_post_args="--max-line-length=120 --ignore=E702,E701,E401,E226"
 let g:syntastic_cpp_checkers = []
 let g:syntastic_python_python_exec = '/usr/bin/python'
 
 " Set syntastic python checker to flake8
 " let g:syntastic_matlab_checkers = ['mlint']
 let g:loaded_syntastic_matlab_mlint_checker = 1
+
+let g:syntastic_json_checkers=['jsonlint']
+
+" reduce size of location list split
+let g:syntastic_loc_list_height=5
 
 " Plugin configurations for tag-based files (e.g. xml, html, etc.)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -692,4 +703,3 @@ nmap <F6> :SyntasticToggleMode<CR>
 
 " map p to ReplaceWithRegister so no copying overwritten text to register
 xmap p gr
-":map! jj <C-c>
