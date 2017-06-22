@@ -41,8 +41,12 @@ Plugin 'honza/vim-snippets'
 " integrade ultisnips with youcompleteme
 Plugin 'ervandew/supertab'
 
+" show the git changes
+Plugin 'mhinz/vim-signify'
+
 " for closing tags in xml, html, etc. documents
 Plugin 'Valloric/MatchTagAlways'
+
 
 " Plugins for creating/managing surrounding brackets, quotes, etc.
 " ervandew/matchem and alvan/vim-closetag conflict
@@ -260,10 +264,10 @@ endif
 "endif
 
 syntax on
-"set background=dark
-let g:neodark#use_256color = 1 " default: 0
-"let g:neodark#background='black' " black, gray or brown
-let g:neodark#terminal_transparent = 1 " default: 0
+" set background=dark
+" let g:neodark#use_256color = 1 " default: 0
+" let g:neodark#background='black' " black, gray or brown
+" let g:neodark#terminal_transparent = 1 " default: 0
 
 colorscheme neodark
 
@@ -401,6 +405,7 @@ autocmd FileType html let b:match_words = '<\(\w\w*\):</\1,{:}'
 autocmd FileType xhtml let b:match_words = '<\(\w\w*\):</\1,{:}'
 autocmd FileType xml let b:match_words = '<\(\w\w*\):</\1,{:}'
 
+
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
@@ -449,6 +454,11 @@ autocmd BufWrite *.* :call DeleteTrailingWS()
 
 " Some remappings to access tags in a newtab
 nmap <C-w><C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+
+" Highlight current word and do not move cursor
+" nnoremap * :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
@@ -614,7 +624,7 @@ let g:ConqueTerm_Color = 1
 " terminal setting
 " let g:ConqueTerm_TERM = 'xterm'
 
-" Things to do default
+" Things to do on open
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Default to show line numbers on open
 au VimEnter * :set nu
@@ -701,5 +711,14 @@ nmap <F2> :NERDTreeToggle<CR>
 " Use F6 to toggle (close and open) NerdTree
 nmap <F6> :SyntasticToggleMode<CR>
 
+" don't sort alphabetically by default
+let g:tagbar_sort = 0
+
 " map p to ReplaceWithRegister so no copying overwritten text to register
 xmap p gr
+
+
+" Setup for diff plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:signify_vcs_list = [ 'git', 'hg' ]
