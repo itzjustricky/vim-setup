@@ -361,6 +361,9 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Open current window in new tab
+map <C-W>t :tab sp<cr>
+
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
