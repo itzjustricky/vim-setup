@@ -384,6 +384,9 @@ map <leader>tq :tabclose<cr>
 " Switch CWD to the directory of the open buffer
 "map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
+" close vim window
+nmap <A-q> :q <CR>
+
 " Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
@@ -716,6 +719,9 @@ nmap <F6> :SyntasticToggleMode<CR>
 
 " don't sort alphabetically by default
 let g:tagbar_sort = 0
+
+" open nerdtree for directory of active file
+nmap <leader>d :NERDTree % <CR>
 
 " map p to ReplaceWithRegister so no copying overwritten text to register
 xmap p gr
