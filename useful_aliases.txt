@@ -1,0 +1,1 @@
+alias psg       'pgrep \!* | xargs --no-run-if-empty ps -o pid:6,psr:5,pcpu:6,pmem:6,vsz:10,size:10,time:10,args -fp'
