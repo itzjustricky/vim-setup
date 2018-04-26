@@ -335,9 +335,21 @@ set nowrap "Wrap lines
 """"""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f')<CR>
-vnoremap <silent> # :call VisualSelection('b')<CR>
 
+fun! VisualSearchMappings()
+    vnoremap <silent> * :call VisualSelection('f')<CR>
+    vnoremap <silent> # :call VisualSelection('b')<CR>
+endfun
+
+
+" I need to do this so that some plugin does not
+" overwrite my valuable visual search hotkey
+augroup VisualSearchMappings
+    au!
+    au VimEnter,BufNewFile,BufReadPost,FileReadPost,BufFilePost,
+                \BufEnter,BufWinEnter,BufNew,FileType,WinEnter,
+                \WinLeave * call VisualSearchMappings()
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
