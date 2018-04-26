@@ -535,6 +535,8 @@ map <leader>pp :setlocal paste!<cr>
 " set clipboard=unnamedplus
 set clipboard=unnamedplus,autoselect,exclude:cons\\\\|linux
 
+nmap <leader>j :%!python -m json.tool<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
