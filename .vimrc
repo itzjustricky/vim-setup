@@ -62,10 +62,10 @@ Plugin 'henrik/vim-indexed-search'
 Plugin 'vim-scripts/ReplaceWithRegister'
 
 " Plugins for colorschemes
-Plugin 'KeitaNakamura/neodark.vim'
+" Plugin 'KeitaNakamura/neodark.vim'
 " Plugin 'flazz/vim-colorschemes'
 " Plugin 'zsoltf/vim-maui'
-" Plugin 'dracula/vim'
+Plugin 'dracula/vim'
 
 " comment script from http://www.vim.org/scripts/script.php?script_id=1528
 " Plugin 'comments.vim'
@@ -269,7 +269,8 @@ syntax on
 " let g:neodark#background='black' " black, gray or brown
 " let g:neodark#terminal_transparent = 1 " default: 0
 
-colorscheme neodark
+" colorscheme neodark
+colorscheme dracula
 
 " Set dracula search to be highlighted as well
 highlight Search ctermbg=lightyellow ctermfg=black
@@ -733,6 +734,8 @@ nmap <F6> :SyntasticToggleMode<CR>
 
 " don't sort alphabetically by default
 let g:tagbar_sort = 0
+
+nnoremap tn :TagbarOpen fj<CR>
 
 " open nerdtree for directory of active file
 nmap <leader>d :NERDTree % <CR>
