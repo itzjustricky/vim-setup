@@ -65,11 +65,12 @@ Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'KeitaNakamura/neodark.vim'
 " Plugin 'flazz/vim-colorschemes'
 " Plugin 'zsoltf/vim-maui'
-" Plugin 'dracula/vim'
+Plugin 'dracula/vim'
 
 " comment script from http://www.vim.org/scripts/script.php?script_id=1528
 " Plugin 'comments.vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'godlygeek/csapprox'
 
 " !!!!!!!!!!!!!!!! EXAMPLES OF SUPPORTED FORMATS !!!!!!!!!!!!!!!!
 " Git plugin not hosted on GitHub
@@ -269,7 +270,29 @@ syntax on
 " let g:neodark#background='black' " black, gray or brown
 " let g:neodark#terminal_transparent = 1 " default: 0
 
+" colorscheme zellner
 colorscheme neodark
+
+""" Colorscheme Approximation """
+" This transforms colorschemes to terminal colorschemes
+" The ctermbg=NONE hooks make backgrounds transparent in terminals
+let g:CSApprox_hook_post = [
+            \ 'highlight Normal            ctermbg=NONE',
+            \ 'highlight LineNr            ctermbg=NONE',
+            \ 'highlight SignifyLineAdd    cterm=bold ctermbg=NONE ctermfg=green',
+            \ 'highlight SignifyLineDelete cterm=bold ctermbg=NONE ctermfg=red',
+            \ 'highlight SignifyLineChange cterm=bold ctermbg=NONE ctermfg=yellow',
+            \ 'highlight SignifySignAdd    cterm=bold ctermbg=NONE ctermfg=green',
+            \ 'highlight SignifySignDelete cterm=bold ctermbg=NONE ctermfg=red',
+            \ 'highlight SignifySignChange cterm=bold ctermbg=NONE ctermfg=yellow',
+            \ 'highlight SignColumn        ctermbg=NONE',
+            \ 'highlight CursorLine        ctermbg=NONE cterm=underline',
+            \ 'highlight Folded            ctermbg=NONE cterm=bold',
+            \ 'highlight FoldColumn        ctermbg=NONE cterm=bold',
+            \ 'highlight NonText           ctermbg=NONE',
+            \ 'highlight clear LineNr'
+            \]
+
 
 " Set dracula search to be highlighted as well
 highlight Search ctermbg=lightyellow ctermfg=black
@@ -734,7 +757,7 @@ nmap <F6> :SyntasticToggleMode<CR>
 " don't sort alphabetically by default
 let g:tagbar_sort = 0
 
-nmap tn :TagBarAutoOpenClose <CR>
+nmap tn :TagbarOpenAutoClose <CR>
 
 " open nerdtree for directory of active file
 nmap <leader>d :NERDTree % <CR>
