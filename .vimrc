@@ -734,6 +734,8 @@ nmap <F6> :SyntasticToggleMode<CR>
 " don't sort alphabetically by default
 let g:tagbar_sort = 0
 
+nmap tn :TagBarAutoOpenClose <CR>
+
 " open nerdtree for directory of active file
 nmap <leader>d :NERDTree % <CR>
 
