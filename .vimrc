@@ -20,8 +20,13 @@ Plugin 'Valloric/YouCompleteMe'
 
 " Tagbar for file hierarchy view
 Plugin 'majutsushi/tagbar'
+
 " Syntastic for syntax checking
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+
+" ALE for syntax checking
+Plugin 'dense-analysis/ale'
+
 " Plugin for hotkeys to move whole lines
 Plugin 'matze/vim-move'
 " vim-airline for looks
@@ -701,6 +706,22 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " Disable autocommenting of form // for c++ files
 au FileType c,cpp setlocal comments-=:// comments+=f://
 
+" ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_linters = {
+    \   'javascript': ['eslint'],
+    \   'python': ['ruff', 'black', 'autopep8'],
+    \}
+
+let b:ale_fixers = {
+    \   'python': ['ruff', 'pycln', 'pyflyby'],
+    \}
+
+" let g:ale_echo_msg_format = '[%linter%][%...code...%] %s'
+" let g:ale_python_flake8_options = "--max-line-length=120 --ignore=E702,E701,E401,E226,W503"
+" let g:ale_python_ruff_options = "--max-line-length=120 --ignore=E702,E701,E401,E226,W503"
+let g:ale_python_pylint_use_msg_id = 1
+
 " Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set statusline+=%#warningmsg#
@@ -713,8 +734,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Set syntastic python checker to flake8
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args="--max-line-length=120 --ignore=E702,E701,E401,E226"
+let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_python_flake8_post_args="--max-line-length=120 --ignore=E702,E701,E401,E226,W503"
 let g:syntastic_cpp_checkers = []
 let g:syntastic_python_python_exec = '/usr/bin/python'
 
@@ -770,3 +791,8 @@ xmap p gr
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:signify_vcs_list = [ 'git', 'hg' ]
+
+
+" Python specific hack to prevent auto-indent on ':'
+autocmd FileType python setlocal indentkeys-=<:>
+autocmd FileType python setlocal indentkeys-=
