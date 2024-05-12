@@ -1,0 +1,18 @@
+alias psg       'pgrep \!* | xargs --no-run-if-empty ps -o pid:6,psr:5,pcpu:6,pmem:6,vsz:10,size:10,time:10,args -fp'
+
+function _work() {
+    compadd $(find ~/work -maxdepth 1 -type d -not -path ~/work -printf '%f ')
+}
+function work () {
+    cd ~/work/"$1"
+}
+compdef _work work
+
+
+function _scratch() {
+    compadd $(find ~/scratchplace/* -maxdepth 1 -type d -not -path '*/.*'  | sed 's!'"$HOME"'/scratchplace/*!!g')
+}
+function scratch () {
+    cd ~/scratchplace/"$1"
+}
+compdef _scratch scratch
