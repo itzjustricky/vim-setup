@@ -16,3 +16,12 @@ function scratch () {
     cd ~/scratchplace/"$1"
 }
 compdef _scratch scratch
+
+function _gitrestore() {
+    compadd $(git diff --name-only)
+}
+function gitrestore () {
+    git checkout  "$1"
+}
+compdef _gitrestore gitrestore
+
