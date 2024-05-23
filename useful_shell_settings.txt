@@ -60,3 +60,9 @@ bindkey "^[^h" backward-kill-sub-word
 bindkey "^w" backward-kill-full-word
 bindkey "^[d" forward-kill-sub-word
 bindkey "^[^d" forward-kill-full-word
+
+
+##################################################
+
+setopt no_share_history
+unsetopt share_history
