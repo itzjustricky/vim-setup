@@ -1,0 +1,5 @@
+/* place in ~/.jupyter/custom/custom.css */
+.jp-Notebook {
+  --jp-notebook-max-width: 98%;
+}
+
