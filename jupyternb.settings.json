@@ -1,0 +1,22 @@
+    "shortcuts": [
+         {
+             "command": "notebook:enable-output-scrolling",
+             "keys": [ "Shift O" ],
+             "selector": ".jp-Notebook:focus"
+         },
+         {
+             "command": "notebook:disable-output-scrolling",
+             "keys": [ "Alt O" ],
+             "selector": ".jp-Notebook:focus"
+         },
+         {
+             "command": "notebook:show-cell-outputs",
+             "keys": [ "O" ],
+             "selector": ".jp-Notebook:focus"
+         },
+         {
+             "command": "notebook:hide-cell-outputs",
+             "keys": [ "H" ],
+             "selector": ".jp-Notebook:focus"
+         }
+    ]
