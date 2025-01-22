@@ -1,3 +1,17 @@
+alias gs="git status"
+alias gl="git log"
+alias gd="git diff"
+
+alias open="xdg-open"
+
+alias start-jupyter="jupyter notebook"
+alias start-jupyter-lab="jupyter lab"
+
+alias eba="source venv/bin/activate"
+
+
+
+
 alias l="ls --group-directories-first -Atrvh"
 alias ll="ls --group-directories-first -Altrvh"
 alias li="ls --group-directories-first -ltrvh"
